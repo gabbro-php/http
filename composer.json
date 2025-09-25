@@ -1,0 +1,26 @@
+{
+    "name": "gabbro-php/http",
+    "version": "1.006393",
+    "license": "MIT",
+    "description": "Provides an http message library similar to PSR7",
+    "type": "library",
+
+    "authors": [
+        {
+            "name": "Daniel Bergløv",
+            "email": "d.bergloev@cloudhome.dk"
+        }
+    ],
+
+    "require": {
+        "php": ">=8.0.0",
+        "gabbro-php/base": "1.*"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "gabbro\\": "src/"
+        },
+        "files": ["bootstrap.php"]
+    }
+}

@@ -1,0 +1,7 @@
+parameters:
+    level: 9
+
+    # Add additional search paths outside this project
+    scanDirectories:
+        - ../base/src
+        
