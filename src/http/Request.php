@@ -109,9 +109,7 @@ class Request extends BaseMessage implements IRequest {
      * @return void
      */
     public function __construct(IVerb|null $verb = null, IUri|null $uri = null) {
-        if ($verb !== null) {
-            $this->setVerb($verb); 
-        }
+        $this->setVerb($verb === null ? new Verb() : $verb);
         
         if ($uri !== null) {
             $this->setUri($uri);
