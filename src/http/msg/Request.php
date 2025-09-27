@@ -114,11 +114,11 @@ interface Request extends Message {
     /**
      * Set a new Verb on this request. 
      *
-     * @param Verb $verb
+     * @param Verb|int<1,max> $verb
      *
      * @return void
      */
-    function setVerb(Verb $verb): void;
+    function setVerb(Verb|int $verb): void;
 
     /**
      * Get the Uri object accociated with this request.
@@ -130,11 +130,11 @@ interface Request extends Message {
     /**
      * Set a new Uri object.
      *
-     * @param Uri $uri      The new Uri object.
+     * @param Uri|string $uri      The new Uri object or string.
      *
      * @return void
      */
-    function setUri(Uri $uri): void;
+    function setUri(Uri|string $uri): void;
 
     /**
      * Get the request target.

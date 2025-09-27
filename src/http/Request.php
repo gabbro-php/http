@@ -101,18 +101,24 @@ class Request extends BaseMessage implements IRequest {
     /**
      * Create a new Request.
      *
-     * @param $verb     Request verbs.
-     *                  See {@see IVerb}.
+     * @param IVerb|int<1,max>|null $verb       Request verbs.
+     *                                          See {@see IVerb}.
      *
-     * @param $uri      The request URI.
+     * @param IUri|string|null $uri             The request URI.
      *
      * @return void
      */
-    public function __construct(IVerb|null $verb = null, IUri|null $uri = null) {
-        $this->setVerb($verb === null ? new Verb() : $verb);
+    public function __construct(IVerb|int|null $verb = null, IUri|string|null $uri = null) {
+        $this->setVerb($verb === null || is_int($verb)
+                ? new Verb($verb ?: IVerb::GET) : $verb);
         
         if ($uri !== null) {
-            $this->setUri($uri);
+            if (is_string($uri)) {
+                $this->setUri(new Uri($uri));
+            
+            } else {
+                $this->setUri($uri);
+            }
         }
     }
     
@@ -336,8 +342,8 @@ class Request extends BaseMessage implements IRequest {
      *
      * @override {@see IRequest::setVerb()}
      */
-    function setVerb(IVerb $verb): void {
-        $this->verb = $verb;
+    function setVerb(IVerb|int $verb): void {
+        $this->verb = is_int($verb) ? new Verb($verb) : $verb;
     }
 
     /**
@@ -358,8 +364,8 @@ class Request extends BaseMessage implements IRequest {
      *
      * @override {@see IRequest::setUri()}
      */
-    public function setUri(IUri $uri): void {
-        $this->uri = $uri;
+    public function setUri(IUri|string $uri): void {
+        $this->uri = is_string($uri) ? new Uri($uri) : $uri;
     }
 
     /**
