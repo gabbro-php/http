@@ -1,6 +1,6 @@
 {
     "name": "gabbro-php/http",
-    "version": "1.006393",
+    "version": "1.006499",
     "license": "MIT",
     "description": "Provides an http message library similar to PSR7",
     "type": "library",
