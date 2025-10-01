@@ -127,12 +127,16 @@ class Request extends BaseMessage implements IRequest {
      *
      * @override {@see IRequest::addParser()}
      */
-    public function getResponse(): IResponse {
+    public function getResponse(int|null $code = null, string|null $reasonPhrase = null): IResponse {
         if ($this->response === null) {
             $this->response = new Response();
             $this->response->setProtocolVersion(
                 $this->getProtocolVersion()
             );
+        }
+        
+        if ($code !== null) {
+            $this->response->setStatus($code, $reasonPhrase);
         }
     
         return $this->response;

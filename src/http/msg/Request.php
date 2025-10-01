@@ -35,9 +35,16 @@ interface Request extends Message {
      * Get a response object configured for this request.
      * This method will always return the same instance of the response.
      *
+     * This method allows you to directly change the status of the response.
+     * Make sure not to override any existing and important status codes that may
+     * already be set. 
+     *
+     * @param Response::STATUS_*|null $code    An optional response code.
+     * @param string|null $reasonPhrase        An optional response phrase
+     *
      * @return Response
      */
-    function getResponse(): Response;
+    function getResponse(int|null $code = null, string|null $reasonPhrase = null): Response;
     
     /**
      * Change the response object for this request.
